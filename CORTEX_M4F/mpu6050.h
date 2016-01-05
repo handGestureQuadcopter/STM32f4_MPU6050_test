@@ -10,13 +10,9 @@ extern C {
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_i2c.h"
-//#include "defines.h"
 
 ///* Default I2C used */
-//#ifndef MPU6050_I2C
 #define	MPU6050_I2C					I2C1
-//#define MPU6050_I2C_PINSPACK		TM_I2C_PinsPack_1
-//#endif
 
 #define MPU6050_I2C_TIMEOUT		   	50000
 

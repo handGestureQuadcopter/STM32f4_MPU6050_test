@@ -1,5 +1,3 @@
-//#include <stdio.h>
-
 #include "stm32f4xx.h"
 #include "stm32f4xx_i2c.h"
 #include "stm32f429i_discovery.h"
@@ -300,8 +298,6 @@ int main(){
   	GPIO_Configuration();
   	USART1_Configuration();	
 
-//	I2C_Config();
-
 	/* Initialize MPU6050 sensor 0, address = 0xD0, AD0 pin on sensor is low */
 	if (MPU6050_Init(&MPU6050_Data0, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s)
 			== TM_MPU6050_Result_Ok) {
@@ -314,8 +310,6 @@ int main(){
 	
 	uint8_t received_data[2];
 	char uart_out[32];
-    	
-//	STM_EVAL_PBInit( BUTTON_USER, BUTTON_MODE_GPIO );
 
 	while(1){
 
@@ -323,16 +317,6 @@ int main(){
 		if (sensor1) {
 			/* Read all data from sensor 1 */
 			MPU6050_ReadAll(&MPU6050_Data0);
-
-//			/* Format data */
-//			sprintf(str,
-//					"1. Accelerometer\n- X:%d\n- Y:%d\n- Z:%d\nGyroscope\n- X:%d\n- Y:%d\n- Z:%d\nTemperature\n- %3.4f\n\n\n",
-//					MPU6050_Data0.Accelerometer_X,
-//					MPU6050_Data0.Accelerometer_Y,
-//					MPU6050_Data0.Accelerometer_Z, MPU6050_Data0.Gyroscope_X,
-//					MPU6050_Data0.Gyroscope_Y, MPU6050_Data0.Gyroscope_Z,
-//					MPU6050_Data0.Temperature);
-//
 
 			USART1_puts("\nNext: ");
 			USART1_puts(" AX: ");
@@ -345,23 +329,6 @@ int main(){
 			itoa(MPU6050_Data0.Accelerometer_Z, uart_out);
 			USART1_puts(uart_out);
 		}
-
-//			I2C_start(I2C1, MUP6050_ADDRESS, I2C_Direction_Transmitter);
-//			I2C_write(I2C1, 0x41);
-//			I2C_stop(I2C1);
-//
-//			// start a transmission in Master receiver mode
-//			I2C_start(I2C1, MUP6050_ADDRESS, I2C_Direction_Receiver);
-//
-//			received_data[0] = I2C_read_ack(I2C1); // read one byte and request another byte
-//			received_data[1] = I2C_read_nack(I2C1); // read one byte and don't request another byte, stop transmission
-//
-//			itoa(received_data[0], uart_out);
-//			USART1_puts(uart_out);
-//			itoa(received_data[1], uart_out);
-//			USART1_puts(uart_out);
 		for (int i = 0; i < 100000; i++);
 	}
-
-//	return 0;
 }

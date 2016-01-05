@@ -11,9 +11,6 @@ TM_MPU6050_Result_t MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Accelerome
 	/* Format I2C address */
 	DataStruct->Address = MPU6050_I2C_ADDR;
 	
-//	/* Initialize I2C */
-//	TM_I2C_Init(MPU6050_I2C, MPU6050_I2C_PINSPACK, MPU6050_I2C_CLOCK);
-	
 	/* Check if device is connected */
 	if (!MPU6050_I2C_IsDeviceConnected(MPU6050_I2C, DataStruct->Address)) {
 		/* Return error */
@@ -121,10 +118,8 @@ void MPU6050_I2C_Init() {
 	I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
 	I2C_InitStructure.I2C_OwnAddress1 = 0x00;
 	I2C_InitStructure.I2C_Ack = I2C_Ack_Disable;
-	//  I2C_InitStructure.I2C_Ack = I2C_Ack_Disable;
 	I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
 	I2C_InitStructure.I2C_ClockSpeed = MPU6050_I2C_CLOCK;
-	//  I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
 
 	/* Initialize the I2C peripheral */
 	I2C_Init(MPU6050_I2C, &I2C_InitStructure);
